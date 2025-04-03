@@ -6,7 +6,12 @@ import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
+from pathlib import Path
+import environ
+BASE_DIR = Path(__file__).resolve().parent.parent
+env = environ.Env()
+# Load environment variables
+env.read_env(str(BASE_DIR / ".env"))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
@@ -23,7 +28,6 @@ ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "127.0.0.1,localhost").split("
 # Application definition
 
 INSTALLED_APPS = [
-    'catalog',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
